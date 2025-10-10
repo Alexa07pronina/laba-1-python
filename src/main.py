@@ -1,20 +1,15 @@
-from src.power import power_function
-from src.constants import SAMPLE_CONSTANT
-
-
+from src.calculator import calculator_rpn
+from src.constants import ROUNDING_DIGITS
 def main() -> None:
     """
-    Обязательнная составляющая программ, которые сдаются. Является точкой входа в приложение
-    :return: Данная функция ничего не возвращает
+    Точка входа в приложение
     """
 
-    target, degree = map(int, input("Введите два числа разделенные пробелом: ").split(" "))
-
-    result = power_function(target=target, power=degree)
-
-    print(result)
-
-    print(SAMPLE_CONSTANT)
+    enter_str = input("Введите выражение в обратной польской нотации или q для завершения: ")
+    while enter_str!='q':
+        result = calculator_rpn(enter_str)
+        print("Результат:", round(result,ROUNDING_DIGITS))    #округляем результат до 2 знаков после запятой
+        enter_str = input("Введите выражение в обратной польской нотации: ")
 
 if __name__ == "__main__":
     main()
